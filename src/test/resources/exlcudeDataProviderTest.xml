@@ -1,0 +1,17 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite2">
+    <test name="Test2">
+        <packages>
+            <package name="page_tests"/>
+        </packages>
+        <classes>
+            <class name="page_tests.DataProviderTest">
+                <methods>
+                    <exclude name="testData"/>
+                    <exclude name="testNUmberOfSolutions" />
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
