@@ -1,6 +1,8 @@
 package page_objects;
 
 import driver_config.DriverConfig;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -33,6 +35,17 @@ public class BasePage {
         Select select = new Select(dropdown);
         select.selectByValue(value);
         return new Select(dropdown).getFirstSelectedOption().getText().trim();
+    }
+
+    public CoursesPage clickCoursesIframeElement(){
+        WebElement link = DriverConfig.getDriver().switchTo().frame(0).findElement(By.linkText("Courses"));
+        JavascriptExecutor js = (JavascriptExecutor) DriverConfig.getDriver();
+        System.out.println("link is displayed: " + link.isDisplayed());
+        System.out.println("link is enabled: " + link.isEnabled());
+        System.out.println("link text: " + link.getText());
+        js.executeScript("arguments[0].click()", link);
+        DriverConfig.getDriver().switchTo().defaultContent();
+        return new CoursesPage();
     }
 
 }

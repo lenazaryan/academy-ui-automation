@@ -4,8 +4,10 @@ import driver_config.DriverConfig;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.LoadableComponent;
+import org.testng.Assert;
 
-public class CoursesPage {
+public class CoursesPage extends LoadableComponent<CoursesPage> {
     @FindBy(xpath="//span[@class='navbar-current-user']")
     private WebElement currentUserNavbar;
     @FindBy(xpath="//div[@title='All-Access Membership']")
@@ -14,6 +16,17 @@ public class CoursesPage {
     private WebElement allAccessMembership;
     public CoursesPage(){
         PageFactory.initElements(DriverConfig.getDriver(), this);
+    }
+
+    @Override
+    protected void load() {
+        DriverConfig.getDriver().get("https://courses.rahulshettyacademy.com/courses");
+    }
+
+    @Override
+    protected void isLoaded() throws Error {
+        String isLoaded = getURL();
+        Assert.assertTrue(isLoaded.contains("courses."));
     }
 
 

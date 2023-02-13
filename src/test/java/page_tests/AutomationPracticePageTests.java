@@ -20,7 +20,7 @@ public class AutomationPracticePageTests extends BaseTests{
         HomePage homePage = basePage.clickHomeButton();
         Assert.assertEquals(homePage.getTitleOfHomePage(),
                 "Selenium, API Testing, Software Testing & More QA Tutorials | Rahul Shetty Academy",
-                "HomePage Title not found");                                                                         //text in <span> but not text between <span> tags
+                "HomePage Title not found");
     }
 
     @Test
@@ -37,6 +37,13 @@ public class AutomationPracticePageTests extends BaseTests{
         BasePage basePage = new BasePage();
         String option = basePage.selectDropdownByValue("option1");
         Assert.assertEquals(option, "Option1", "Incorrect Value");
+    }
+
+    @Test
+    public void testClickIframeCourseLink(){
+        BasePage basePage = new BasePage();
+        CoursesPage coursesPage = basePage.clickCoursesIframeElement();
+        Assert.assertEquals(coursesPage.getURL(), "https://courses.rahulshettyacademy.com/courses", "Incorrect URL!");
     }
 
 
